@@ -22,7 +22,7 @@ console.log('STRIPE_PUBLISHABLE_KEY:', process.env.STRIPE_PUBLISHABLE_KEY ? 'Pre
 
 // Set default PUBLIC_URL for development
 if (!process.env.PUBLIC_URL) {
-  process.env.PUBLIC_URL = 'https://eb81-103-159-115-12.ngrok-free.app';
+  process.env.PUBLIC_URL = 'https://twilio-be-2-snjr.onrender.com';
   console.log('Using default PUBLIC_URL:', process.env.PUBLIC_URL);
 }
 
