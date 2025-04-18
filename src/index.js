@@ -1,4 +1,3 @@
-// Load environment variables first
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -6,19 +5,19 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import { errorHandler } from './middleware/errorHandler.js';
-import authRoutes from './routes/auth.js';
 import callRoutes from './routes/calls.js';
-import paymentRoutes from './routes/payments.js';
+// import authRoutes from './routes/auth.js';
+// import paymentRoutes from './routes/payments.js';
 
 // Debug logging for environment variables
-console.log('Environment variables loaded:');
-console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Present' : 'Missing');
-console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Present' : 'Missing');
-console.log('TWILIO_ACCOUNT_SID:', process.env.TWILIO_ACCOUNT_SID ? 'Present' : 'Missing');
-console.log('TWILIO_AUTH_TOKEN:', process.env.TWILIO_AUTH_TOKEN ? 'Present' : 'Missing');
-console.log('TWILIO_PHONE_NUMBER:', process.env.TWILIO_PHONE_NUMBER ? 'Present' : 'Missing');
-console.log('STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY ? 'Present' : 'Missing');
-console.log('STRIPE_PUBLISHABLE_KEY:', process.env.STRIPE_PUBLISHABLE_KEY ? 'Present' : 'Missing');
+// console.log('Environment variables loaded:');
+// console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Present' : 'Missing');
+// console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Present' : 'Missing');
+// console.log('TWILIO_ACCOUNT_SID:', process.env.TWILIO_ACCOUNT_SID ? 'Present' : 'Missing');
+// console.log('TWILIO_AUTH_TOKEN:', process.env.TWILIO_AUTH_TOKEN ? 'Present' : 'Missing');
+// console.log('TWILIO_PHONE_NUMBER:', process.env.TWILIO_PHONE_NUMBER ? 'Present' : 'Missing');
+// console.log('STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY ? 'Present' : 'Missing');
+// console.log('STRIPE_PUBLISHABLE_KEY:', process.env.STRIPE_PUBLISHABLE_KEY ? 'Present' : 'Missing');
 
 // Set default PUBLIC_URL for development
 if (!process.env.PUBLIC_URL) {
@@ -46,29 +45,16 @@ if (missingEnvVars.length > 0) {
 const app = express();
 
 // Middleware
-// app.use(cors({
-//   origin: '*', 
-
-
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
-// }));
-
-// app.use(cors({
-//     origin: 'http://localhost:5173',
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//     allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
-//   }));
   
 const allowedOrigins = [
     'http://localhost:5173',
+    'https://e-phone-v1.netlify.app',
     'https://twilio-be-2-snjr.onrender.com',
-    'https://your-frontend-domain.com' // <-- Add more if needed
+    'https://your-frontend-domain.com' 
   ];
   
   app.use(cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl)
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
@@ -89,9 +75,9 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use('/api/auth', authRoutes);
+// app.use('/api/auth', authRoutes);
 app.use('/api/calls', callRoutes);
-app.use('/api/payments', paymentRoutes);
+// app.use('/api/payments', paymentRoutes);
 
 // Error handling
 app.use(errorHandler);
