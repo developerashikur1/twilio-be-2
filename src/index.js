@@ -54,12 +54,31 @@ const app = express();
 //   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
 // }));
 
-app.use(cors({
-    origin: 'http://localhost:5173',
+// app.use(cors({
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
+//   }));
+  
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://twilio-be-2-snjr.onrender.com',
+    'https://your-frontend-domain.com' // <-- Add more if needed
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
   }));
-  
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // For Twilio webhooks
