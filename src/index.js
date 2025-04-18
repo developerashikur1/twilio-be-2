@@ -46,11 +46,20 @@ if (missingEnvVars.length > 0) {
 const app = express();
 
 // Middleware
+// app.use(cors({
+//   origin: '*', 
+
+
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
+// }));
+
 app.use(cors({
-  origin: '*', // Be more specific in production
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
-}));
+    origin: 'https://twilio-be-2-snjr.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
+  }));
+  
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // For Twilio webhooks
