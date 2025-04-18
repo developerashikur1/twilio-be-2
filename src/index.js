@@ -55,7 +55,7 @@ const app = express();
 // }));
 
 app.use(cors({
-    origin: 'https://twilio-be-2-snjr.onrender.com',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
   }));
