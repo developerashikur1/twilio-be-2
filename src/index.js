@@ -47,10 +47,10 @@ const app = express();
 // Middleware
   
 const allowedOrigins = [
-    'http://localhost:5173',
     'https://e-phone-v1.netlify.app',
     'https://twilio-be-2-snjr.onrender.com',
-    'https://your-frontend-domain.com' 
+    'https://your-frontend-domain.com',
+    'http://localhost:5173',
   ];
   
   app.use(cors({
