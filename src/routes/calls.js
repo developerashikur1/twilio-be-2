@@ -121,20 +121,20 @@ router.post('/public/initiate', async (req, res) => {
     const { toNumber, estimatedDuration, email } = req.body;
 
     // Find or create user by email
-    let user = await User.findOne({ email });
-    if (!user) {
-      user = new User({ 
-        email,
-        type: 'public',
-        balance: 100 // Default balance of $100
-      });
-      await user.save();
-    }
+    // let user = await User.findOne({ email });
+    // if (!user) {
+    //   user = new User({ 
+    //     email,
+    //     type: 'public',
+    //     balance: 100 // Default balance of $100
+    //   });
+    //   await user.save();
+    // }
 
     // Check if user has sufficient balance
-    if (user.balance <= 0) {
-      return res.status(400).json({ message: 'Insufficient balance' });
-    }
+    // if (user.balance <= 0) {
+    //   return res.status(400).json({ message: 'Insufficient balance' });
+    // }
 
     // Create Twilio call with a proper public URL
     const call = await twilioClient.calls.create({
@@ -145,7 +145,7 @@ router.post('/public/initiate', async (req, res) => {
 
     // Create call record with estimated duration
     const callRecord = new Call({
-      userId: user._id,
+      userId: "user._id",
       fromNumber: process.env.TWILIO_PHONE_NUMBER,
       toNumber,
       callSid: call.sid,
