@@ -144,17 +144,17 @@ router.post('/public/initiate', async (req, res) => {
     });
 
     // Create call record with estimated duration
-    const callRecord = new Call({
-      userId: "user._id",
-      fromNumber: process.env.TWILIO_PHONE_NUMBER,
-      toNumber,
-      callSid: call.sid,
-      status: 'initiated',
-      estimatedDuration: estimatedDuration || 0,
-      paymentIntentId: req.body.paymentIntentId
-    });
+    // const callRecord = new Call({
+    //   userId: "user._id",
+    //   fromNumber: process.env.TWILIO_PHONE_NUMBER,
+    //   toNumber,
+    //   callSid: call.sid,
+    //   status: 'initiated',
+    //   estimatedDuration: estimatedDuration || 0,
+    //   paymentIntentId: req.body.paymentIntentId
+    // });
 
-    await callRecord.save();
+    // await callRecord.save();
 
     res.json({ callSid: call.sid });
   } catch (error) {
