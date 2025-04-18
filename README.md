@@ -38,7 +38,7 @@ A modern web application that allows users to make calls using Twilio and manage
    TWILIO_PHONE_NUMBER=your_twilio_phone_number
    STRIPE_SECRET_KEY=your_stripe_secret_key
    STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
-   BASE_URL=http://localhost:5000
+   BASE_URL=https://eb81-103-159-115-12.ngrok-free.app
    ```
 
 4. Start MongoDB
@@ -90,4 +90,5 @@ The frontend should be built using React and should include:
 - Refunds are processed automatically for cancelled calls
 - All sensitive data is stored securely
 - The application follows ES6+ standards
+
 # twilio-be-2
