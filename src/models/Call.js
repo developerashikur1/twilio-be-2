@@ -14,7 +14,7 @@ const callSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  callSid: {
+  callControlId: {
     type: String,
     required: true
   },
@@ -59,6 +59,9 @@ const callSchema = new mongoose.Schema({
   },
   endTime: {
     type: Date
+  },
+  telnyxWebhookData: {
+    type: Object
   }
 });
 

@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 import { errorHandler } from './middleware/errorHandler.js';
 import callRoutes from './routes/calls.js';
 // import authRoutes from './routes/auth.js';
-// import paymentRoutes from './routes/payments.js';
+import paymentRoutes from './routes/payments.js';
 
 // Debug logging for environment variables
 // console.log('Environment variables loaded:');
@@ -77,7 +77,7 @@ app.get('/', (req, res) => {
 // Routes
 // app.use('/api/auth', authRoutes);
 app.use('/api/calls', callRoutes);
-// app.use('/api/payments', paymentRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Error handling
 app.use(errorHandler);

@@ -7,6 +7,36 @@ const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Public routes (no authentication required)
+router.post('/public/make-payment', async (req, res) => {
+    try {
+        const { paymentMethodId, amount } = req.body
+    
+        // Create a payment intent
+        const paymentIntent = await stripe.paymentIntents.create({
+          payment_method: paymentMethodId,
+          amount: amount, // amount in cents
+          currency: "usd",
+          automatic_payment_methods: {
+            enabled: true,
+            allow_redirects: "never",
+          },
+          confirm: true,
+        })
+    
+        // Return the client secret
+        res.json({
+          success: true,
+          clientSecret: paymentIntent.client_secret,
+        })
+      } catch (error) {
+        console.error("Payment error:", error)
+        res.status(400).json({
+          success: false,
+          message: error.message || "Payment processing failed",
+        })
+      }
+});
+
 router.post('/public/create-payment-intent', async (req, res) => {
   try {
     const { amount, email } = req.body;
